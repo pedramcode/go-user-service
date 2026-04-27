@@ -21,9 +21,10 @@ func main() {
 	// Initialize repositories
 	userRepo := repository.NewUserRepository(db)
 	credRepo := repository.NewCredentialRepository(db)
+	otpRepo := repository.NewOtpRepository(db)
 
 	// Initialize services
-	userService := application.NewUserService(userRepo, credRepo)
+	userService := application.NewUserService(userRepo, credRepo, otpRepo)
 
 	_ = userService
 }

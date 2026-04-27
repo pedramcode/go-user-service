@@ -8,15 +8,18 @@ import (
 type UserService struct {
 	userRepo       domain.UserRepository
 	credentialRepo domain.CredentialRepository
+	otpRepo        domain.OtpRepository
 }
 
 func NewUserService(
 	userRepo domain.UserRepository,
 	credentialRepo domain.CredentialRepository,
+	otpRepo domain.OtpRepository,
 ) *UserService {
 	return &UserService{
 		userRepo:       userRepo,
 		credentialRepo: credentialRepo,
+		otpRepo:        otpRepo,
 	}
 }
 
