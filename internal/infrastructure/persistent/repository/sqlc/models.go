@@ -19,6 +19,18 @@ type Credential struct {
 	Value     string       `json:"value"`
 }
 
+type Otp struct {
+	ID        int32        `json:"id"`
+	CreatedAt sql.NullTime `json:"created_at"`
+	UpdatedAt sql.NullTime `json:"updated_at"`
+	DeletedAt sql.NullTime `json:"deleted_at"`
+	UserID    int32        `json:"user_id"`
+	Reason    string       `json:"reason"`
+	Medium    string       `json:"medium"`
+	Code      string       `json:"code"`
+	UsedAt    sql.NullTime `json:"used_at"`
+}
+
 type User struct {
 	ID          int32          `json:"id"`
 	CreatedAt   sql.NullTime   `json:"created_at"`

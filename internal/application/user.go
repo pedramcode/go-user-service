@@ -12,7 +12,8 @@ type UserService struct {
 
 func NewUserService(
 	userRepo domain.UserRepository,
-	credentialRepo domain.CredentialRepository) *UserService {
+	credentialRepo domain.CredentialRepository,
+) *UserService {
 	return &UserService{
 		userRepo:       userRepo,
 		credentialRepo: credentialRepo,

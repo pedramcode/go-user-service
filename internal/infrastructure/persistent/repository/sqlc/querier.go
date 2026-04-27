@@ -16,6 +16,12 @@ type Querier interface {
 	CredentialGetByID(ctx context.Context, id int32) (Credential, error)
 	CredentialGetByUserTypeKey(ctx context.Context, arg CredentialGetByUserTypeKeyParams) (Credential, error)
 	CredentialUpdate(ctx context.Context, arg CredentialUpdateParams) (sql.NullTime, error)
+	OtpCreate(ctx context.Context, arg OtpCreateParams) (OtpCreateRow, error)
+	OtpDeleteByID(ctx context.Context, id int32) (int64, error)
+	// sql/queries/otp.sql
+	OtpGetByID(ctx context.Context, id int32) (Otp, error)
+	OtpGetValidOtp(ctx context.Context, arg OtpGetValidOtpParams) (Otp, error)
+	OtpUpdate(ctx context.Context, arg OtpUpdateParams) (sql.NullTime, error)
 	UserCreate(ctx context.Context, arg UserCreateParams) (UserCreateRow, error)
 	UserDeleteByEmail(ctx context.Context, email string) (int64, error)
 	UserDeleteByID(ctx context.Context, id int32) (int64, error)
