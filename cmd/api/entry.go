@@ -4,6 +4,7 @@ import (
 	"dovenet/user-service/internal/application"
 	"dovenet/user-service/internal/infrastructure/persistent"
 	"dovenet/user-service/internal/infrastructure/persistent/repository"
+	"dovenet/user-service/internal/interfaces/http"
 
 	"github.com/joho/godotenv"
 )
@@ -18,6 +19,9 @@ func main() {
 		panic(err)
 	}
 
+	// Initialize interfaces
+	httpServer := http.NewHttpServer()
+
 	// Initialize repositories
 	userRepo := repository.NewUserRepository(db)
 	credRepo := repository.NewCredentialRepository(db)
@@ -27,4 +31,7 @@ func main() {
 	userService := application.NewUserService(userRepo, credRepo, otpRepo)
 
 	_ = userService
+
+	// Run interfaces
+	httpServer.Run()
 }
