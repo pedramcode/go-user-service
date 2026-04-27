@@ -51,7 +51,7 @@ func (r *UserRepository) GetByEmail(ctx context.Context, email string) (*domain.
 			CreatedAt: user.CreatedAt.Time,
 			UpdatedAt: user.UpdatedAt.Time,
 		},
-		Email:       user.Username,
+		Email:       user.Email,
 		Username:    user.Username,
 		Firstname:   &user.Firstname.String,
 		Lastname:    &user.Lastname.String,

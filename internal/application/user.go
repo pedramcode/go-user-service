@@ -2,19 +2,20 @@ package application
 
 import (
 	"context"
+	"dovenet/user-service/internal/application/port"
 	"dovenet/user-service/internal/domain"
 )
 
 type UserService struct {
-	userRepo       domain.UserRepository
-	credentialRepo domain.CredentialRepository
-	otpRepo        domain.OtpRepository
+	userRepo       port.UserRepository
+	credentialRepo port.CredentialRepository
+	otpRepo        port.OtpRepository
 }
 
 func NewUserService(
-	userRepo domain.UserRepository,
-	credentialRepo domain.CredentialRepository,
-	otpRepo domain.OtpRepository,
+	userRepo port.UserRepository,
+	credentialRepo port.CredentialRepository,
+	otpRepo port.OtpRepository,
 ) *UserService {
 	return &UserService{
 		userRepo:       userRepo,

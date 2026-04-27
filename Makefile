@@ -3,7 +3,7 @@ SQLC		:= sqlc
 
 CMD_DIR		:= cmd
 API_DIR		:= $(CMD_DIR)/api
-ENTRY_FILE	:= $(API_DIR)/entry.go
+ENTRY_FILE	:= $(API_DIR)/main.go
 
 .PHONY: run
 run:
