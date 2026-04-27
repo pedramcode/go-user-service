@@ -23,12 +23,12 @@ def run_migration(migration_name: str) -> int:
         print("Error: migration file name is required as first parameter", file=sys.stderr)
         return 1
     
-    # Validate migration name (optional but good practice)
+    
     if not migration_name.replace('_', '').isalnum():
         print(f"Warning: Migration name '{migration_name}' contains special characters", file=sys.stderr)
     
     try:
-        # Run the migrate command
+        
         result = subprocess.run(
             [
                 "migrate",
@@ -40,10 +40,10 @@ def run_migration(migration_name: str) -> int:
             ],
             capture_output=True,
             text=True,
-            check=False  # Don't raise exception, we'll handle return code manually
+            check=False  
         )
         
-        # Check if command was successful
+        
         if result.returncode == 0:
             print(f"✓ Migration created successfully: {migration_name}")
             if result.stdout:
