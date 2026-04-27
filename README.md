@@ -2,6 +2,13 @@
 
 Golang user authentication, authorization and management service.
 
+## Dependencies
+
+### Database
+
+- Postgres
+- Redis
+
 ## Development
 
 ### Tools
