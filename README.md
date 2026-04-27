@@ -1,5 +1,7 @@
 # User Service
 
+Golang user authentication, authorization and management service.
+
 ## Development
 
 ### Tools
