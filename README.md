@@ -2,6 +2,10 @@
 
 Golang user authentication, authorization and management service.
 
+## Architecture
+
+This project follows **Clean Architecture** (also known as Hexagonal Architecture) principles to maintain separation of concerns, testability, and independence from external frameworks.
+
 ## Dependencies
 
 ### Database
