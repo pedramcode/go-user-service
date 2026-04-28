@@ -42,7 +42,7 @@ func NewHttpServer(logger *zap.Logger, userService *application.UserService) *Ht
 
 func (s *HttpServer) Run() error {
 	go func() {
-		s.logger.Info("Starting HTTP server: ", zap.String("addr", s.server.Addr))
+		s.logger.Info("Starting HTTP server", zap.String("addr", s.server.Addr))
 		if err := s.server.ListenAndServe(); err != nil {
 			s.logger.Fatal("Failed to start server", zap.Error(err))
 		}
