@@ -20,3 +20,11 @@ generate_sqlc:
 .PHONY: generate_swagger
 generate_swagger:
 	swag init -g cmd/api/main.go -o ./docs
+
+.PHONY: generate_mockery
+generate_mockery:
+	mockery --all --output=./mocks --outpkg=mocks
+
+.PHONY: test
+test:
+	$(GO) test ./...

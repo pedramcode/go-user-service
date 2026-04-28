@@ -5,6 +5,7 @@ import (
 	"dovenet/user-service/internal/domain"
 )
 
+//go:generate mockery --name=UserRepository --output=../../../mocks --outpkg=mocks --filename=mock_user_repository.go
 type UserRepository interface {
 	GetByID(ctx context.Context, id int32) (*domain.User, error)
 	GetByEmail(ctx context.Context, email string) (*domain.User, error)
