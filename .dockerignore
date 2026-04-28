@@ -1,0 +1,48 @@
+# .dockerignore
+.git
+.gitignore
+README.md
+Makefile
+*.md
+.dockerignore
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs and temporary files
+*.log
+tmp/
+temp/
+
+# Test files
+*_test.go
+test/
+tests/
+
+# Documentation
+docs/
+swagger/
+
+# Binary files
+user-service
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files (better to use actual env vars in production)
+.env.local
+.env.*.local
+
+# Build outputs
+bin/
+dist/
+build/
