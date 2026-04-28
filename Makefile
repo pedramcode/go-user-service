@@ -13,6 +13,10 @@ run:
 tidy:
 	$(GO) mod tidy
 
-.PHONY: generate
-generate:
+.PHONY: generate_sqlc
+generate_sqlc:
 	$(SQLC) generate
+
+.PHONY: generate_swagger
+generate_swagger:
+	swag init -g cmd/api/main.go -o ./docs

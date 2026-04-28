@@ -8,12 +8,18 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
+
+	_ "dovenet/user-service/docs"
+
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 type Router struct {
 	engine         *gin.Engine
 	userHandler    *handler.UserHandler
 	authMiddleware *middleware.AuthMiddleware
+	healthHandler  *handler.HealthHandler
 	logger         *zap.Logger
 }
 
@@ -28,6 +34,7 @@ func NewRouter(
 		engine:         engine,
 		logger:         logger,
 		userHandler:    handler.NewUserHandler(userService),
+		healthHandler:  handler.NewHealthHandler(),
 		authMiddleware: authMiddleware,
 	}
 
@@ -44,6 +51,17 @@ func (r *Router) setupMiddlewares() {
 }
 
 func (r *Router) setupRouter() {
+	system := r.engine.Group("")
+	{
+		system.GET("/health", r.healthHandler.Check)
+		system.GET("/ready", r.healthHandler.Ready)
+		system.GET("/live", r.healthHandler.Live)
+	}
+
+	if os.Getenv("ENV") != "production" {
+		r.engine.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	}
+
 	public := r.engine.Group("/api/v1")
 	{
 		user := public.Group("/user")
