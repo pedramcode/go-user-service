@@ -17,7 +17,6 @@ import (
 
 type HttpServer struct {
 	server *http.Server
-	engine *gin.Engine
 	logger *zap.Logger
 }
 
@@ -26,7 +25,6 @@ func NewHttpServer(logger *zap.Logger, userService *application.UserService) *Ht
 	addr := fmt.Sprintf("%s:%s", os.Getenv("HTTP_HOST"), os.Getenv("HTTP_PORT"))
 
 	server := &HttpServer{
-		engine: engine,
 		server: &http.Server{
 			Addr:         addr,
 			Handler:      engine,
@@ -37,7 +35,7 @@ func NewHttpServer(logger *zap.Logger, userService *application.UserService) *Ht
 		logger: logger,
 	}
 
-	router.NewRouter(server.engine, logger, userService)
+	router.NewRouter(engine, logger, userService)
 
 	return server
 }
