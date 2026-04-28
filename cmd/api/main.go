@@ -5,8 +5,10 @@ import (
 	"dovenet/user-service/internal/infrastructure/persistent"
 	"dovenet/user-service/internal/infrastructure/persistent/repository"
 	"dovenet/user-service/internal/interfaces/http"
+	"log"
 
 	"github.com/joho/godotenv"
+	"go.uber.org/zap"
 )
 
 func main() {
@@ -19,9 +21,6 @@ func main() {
 		panic(err)
 	}
 
-	// Initialize interfaces
-	httpServer := http.NewHttpServer()
-
 	// Initialize repositories
 	userRepo := repository.NewUserRepository(db)
 	credRepo := repository.NewCredentialRepository(db)
@@ -30,7 +29,15 @@ func main() {
 	// Initialize services
 	userService := application.NewUserService(userRepo, credRepo, otpRepo)
 
-	_ = userService
+	// Initialize interfaces dependencies
+	logger, err := zap.NewProduction()
+	if err != nil {
+		log.Fatalf("Failed to initialize logger: %v", err)
+	}
+	defer logger.Sync()
+
+	// Initialize interfaces
+	httpServer := http.NewHttpServer(logger, userService)
 
 	// Run interfaces
 	httpServer.Run()
